@@ -65,8 +65,6 @@ start2:
 entry_8080_code:
     
     %include "8080.asm"
-    
-    db 0xED, 0xFD   ; RETEM (8086へ復帰)
 
 ; 8086復帰
 after_8080:
@@ -81,8 +79,9 @@ after_8080:
     ;mov si, msg_back
     ;call print_string
     
-hang:
-    jmp hang
+hlt_loop:
+    hlt
+    jmp hlt_loop
 
     
 ;-----------------------

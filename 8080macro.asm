@@ -101,3 +101,19 @@
 %endif
 %endmacro
 
+; 0x0F, 0xFFの直後へ返る。RETEMの後ろが8086の命令として誤解されて実行されることはない
+%macro RETEM 0
+    db 0xED, 0xFD
+%endmacro
+
+%macro RET 0
+    db 0C9h
+%endmacro
+
+%macro ADI 1
+    db 0C6h, %1
+%endmacro
+
+
+
+
