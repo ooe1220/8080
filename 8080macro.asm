@@ -30,3 +30,74 @@
     dw %1 ; x86も8080もリトルエンディアンなので元々リトルエンディアン。上位と下位を入れ替える必要は無い
 %endmacro
 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; --- CPI マクロ ---
+%macro CPI 1
+    db 0xFE, %1     ; CPI value (A - value)
+%endmacro
+
+; --- JNZ addr ---
+%macro JNZ 1
+    db 0xC2
+    dw %1
+%endmacro
+
+; --- ADD マクロ ---
+%macro ADD 1
+%ifidni %1,A
+    db 0x87
+%elifidni %1,B
+    db 0x80
+%elifidni %1,C
+    db 0x81
+%elifidni %1,D
+    db 0x82
+%elifidni %1,E
+    db 0x83
+%elifidni %1,H
+    db 0x84
+%elifidni %1,L
+    db 0x85
+%endif
+%endmacro
+
+; --- INR マクロ ---
+%macro INR 1
+%ifidni %1,A
+    db 0x3C
+%elifidni %1,B
+    db 0x04
+%elifidni %1,C
+    db 0x0C
+%elifidni %1,D
+    db 0x14
+%elifidni %1,E
+    db 0x1C
+%elifidni %1,H
+    db 0x24
+%elifidni %1,L
+    db 0x2C
+%endif
+%endmacro
+
+; --- DCR マクロ ---
+%macro DCR 1
+%ifidni %1,A
+    db 0x3D
+%elifidni %1,B
+    db 0x05
+%elifidni %1,C
+    db 0x0D
+%elifidni %1,D
+    db 0x15
+%elifidni %1,E
+    db 0x1D
+%elifidni %1,H
+    db 0x25
+%elifidni %1,L
+    db 0x2D
+%endif
+%endmacro
+

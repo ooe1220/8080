@@ -3,8 +3,6 @@
 ; lsblk
 ; sudo dd if=boot.bin of=/dev/sdb bs=512 count=2 conv=notrunc
 
-%include "8080macro.asm"
-
 org 0x7C00
 
 start:
